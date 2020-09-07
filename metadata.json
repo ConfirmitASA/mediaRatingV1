@@ -1,0 +1,25 @@
+{
+  "id": "378376ec-d3e7-47a8-871d-e432c82e4cd5",
+  "name": "Media rating (DEVELOPMENT)",
+  "description": "Custom question which allows respondents to evaluate media (video or audio) while it broadcasted. Developed by Confirmit.",
+  "baseQuestionType": "OpenForm",
+  "disableDefaultRendering": false,
+  "iconUrl": "design/icon.svg",
+  "designEntryPoint": "design/index.html",
+  "runtimeEntryPoint": {
+    "component": "runtime/component.js",
+    "deps": {
+      "scripts": [
+        "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/video.js/7.8.1/alt/video.core.min.js"
+      ],
+      "styles": [
+        "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css",
+        "https://cdnjs.cloudflare.com/ajax/libs/video.js/7.9.1/video-js.min.css",
+        "/runtime/styles.css"
+      ]
+    }
+  }
+}

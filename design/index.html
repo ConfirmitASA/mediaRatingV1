@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css"/>
+    <script type="text/javascript" src="custom-question.js"></script>
+    <script type="text/javascript" src="design-page-components.js"></script>
+</head>
+<body>
+<div id="customSettings">
+    <div class="comd-alert comd-alert--info">
+        <div class="comd-alert__text" id="testID">
+            Media rating question.
+        </div>
+    </div>
+    <div class="node-properties-key-fields comd-panel mediaOptions">
+        <header class="node-properties__header co-flex co-flex--justify-between co-flex--center">
+            <div class="node-properties__toggle co-flex co-flex--center">
+                <h4 class="co-text-size-normal">Media options</h4>
+                <div class="sd-tooltip-help"
+                     data-tooltip-text="Main options of the question"></div>
+            </div>
+            <div class="co-flex co-flex--center">
+                <button class="collapse-button comd-icon-button comd-panel__toggle--icon-button"></button>
+            </div>
+        </header>
+        <div class="comd-panel__collapse-area">
+            <div class="node-properties">
+<!--                <div class="node-property-container">-->
+<!--                    <div class="node-property node-property&#45;&#45;mediatype">-->
+<!--                        <label class="node-property__label" for="mediaType">Type</label>-->
+<!--                        <select class="form-input" name="mediaType" id="mediaType"/>-->
+<!--                            <option value="video" selected>video</option>-->
+<!--                            <option value="audio">audio</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="node-property-container">
+                    <div class="node-property node-property--mediasource">
+                        <label class="node-property__label" for="mediaSrc">Source (link)
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="Required property"></div>
+                        </label>
+                        <input type="text" id="mediaSrc" class="form-input" required="required"/>
+                    </div>
+                </div>
+                <div class="node-property-container">
+                    <div class="node-property node-property--mediaposter">
+                        <label class="node-property__label" for="mediaPoster">Poster (link)</label>
+                        <input type="text" class="form-input" id="mediaPoster"/>
+                    </div>
+                </div>
+                <div class="node-property-container">
+                    <div class="node-property node-property--mediawidth">
+                        <label class="node-property__label" for="mediaWidth">Width (px)
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="640px by default"></div>
+                        </label>
+                        <input type="text" class="form-input form-input--3ch" name="mediaWidth" id="mediaWidth" value=""/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="node-properties-key-fields comd-panel comd-panel--collapsed sliderOptions">
+        <header class="node-properties__header co-flex co-flex--justify-between co-flex--center">
+            <div class="node-properties__toggle co-flex co-flex--center">
+                <h4 class="co-text-size-normal">Slider options</h4>
+                <div class="sd-tooltip-help"
+                     data-tooltip-text="Here you may readjust slider settings on the question."></div>
+            </div>
+            <div class="co-flex co-flex--center">
+                <button class="collapse-button comd-icon-button comd-panel__toggle--icon-button"></button>
+            </div>
+        </header>
+        <div class="comd-panel__collapse-area">
+            <div class="node-properties">
+                <div class="node-property-container">
+                    <div class="node-property node-property--sliderposition">
+                        <label class="node-property__label" for="sliderPosition">Position</label>
+                        <select id="sliderPosition" class="form-input"/>
+                            <option value="bottom">Bottom</option>
+                            <option value="left">Left</option>
+                            <option value="right">Right</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="node-property-container">
+                    <div class="node-property node-property--sliderpadding">
+                        <label class="node-property__label" for="sliderPadding">Indent <!-- from the player -->
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="This setting changes indent of a slider form the media container."></div>
+                        </label>
+                        <input type="text" class="form-input form-input--3ch" id="sliderPadding" value=""/>
+                    </div>
+                </div>
+            </div>
+            <div class="node-properties">
+                <div class="node-property-container">
+                    <div class="node-property node-property--slidermin">
+                        <label class="node-property__label" for="scaleMin">Minimum
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="-50 by default"></div>
+                        </label>
+                        <input type="text" class="form-input form-input--3ch" id="scaleMin" value=""/>
+                    </div>
+                </div>
+                <div class="node-property-container">
+                    <div class="node-property node-property--slidermax">
+                        <label class="node-property__label" for="scaleMax">Maximum
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="50 by default"></div>
+                        </label>
+                        <input type="text" class="form-input form-input--3ch" id="scaleMax"/>
+                    </div>
+                </div>
+                <div class="node-property-container">
+                    <div class="node-property node-property--sliderstart">
+                        <label class="node-property__label" for="scaleStart">Start point
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="0 by default"></div>
+                        </label>
+                        <input type="text" class="form-input form-input--3ch" id="scaleStart"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="node-properties-key-fields comd-panel comd-panel--collapsed moreOptions">
+        <header class="node-properties__header co-flex co-flex--justify-between co-flex--center">
+            <div class="node-properties__toggle co-flex co-flex--center">
+                <h4 class="co-text-size-normal">More options</h4>
+                <div class="sd-tooltip-help"
+                     data-tooltip-text="Additional options"></div>
+            </div>
+            <div class="co-flex co-flex--center">
+                <button class="collapse-button comd-icon-button comd-panel__toggle--icon-button"></button>
+            </div>
+        </header>
+        <div class="comd-panel__collapse-area">
+            <div class="node-properties">
+                <h3>Play button</h3>
+            </div>
+            <div class="node-properties">
+                <div class="node-property-container">
+                    <div class="node-property node-property--playbuttoncolor">
+                        <label class="node-property__label" for="playButtonColor">Color</label>
+                        <input type="color" class="form-input" id="playButtonColor" value=""/>
+                    </div>
+                </div>
+                <div class="node-property-container">
+                    <div class="node-property node-property--playbuttontext">
+                        <label class="node-property__label" for="playButtonText">Text
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="'Play' by default"></div>
+                        </label>
+                        <input type="text" class="form-input" id="playButtonText" value=""/>
+                    </div>
+                </div>
+                <div class="node-property-container">
+                    <div class="node-property node-property--countdown">
+                        <label class="node-property__label" for="countdown">Countdown
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="3 seconds by default"></div>
+                        </label>
+                        <input type="text" class="form-input form-input--3ch" id="countdown" value=""/>
+                        <span>sec</span>
+                    </div>
+                </div>
+            </div>
+            <div class="node-properties">
+                <h3>User inactivity</h3>
+            </div>
+            <div class="node-properties">
+                <div class="node-property-container">
+                    <div class="node-property node-property--warningsamount">
+                        <label class="node-property__label" for="warningsAmount">Checks
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="Once by default"></div>
+                        </label>
+                        <input type="text" class="form-input form-input--3ch" id="warningsAmount"/>
+                    </div>
+                </div>
+                <div class="node-property-container">
+                    <div class="node-property node-property--timecheck">
+                        <label class="node-property__label" for="timeCheck">Time
+                            <div class="sd-tooltip-help"
+                            data-tooltip-text="5 seconds by default"></div>
+                        </label>
+                        <input type="text" class="form-input form-input--3ch" id="timeCheck"/>
+                        <span>sec</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="comd-tooltip comd-tooltip--right" id="tooltipBox">
+    <div class="comd-tooltip__arrow"></div>
+    <div class="comd-tooltip__inner"></div>
+</div>
+<script>
+    /* settings behaviour */
+    //var selectMediaType = document.getElementById('mediaType');
+    var inputMediaWidth = document.getElementById('mediaWidth');
+    var inputMediaSrc = document.getElementById('mediaSrc');
+    var inputMediaPoster = document.getElementById('mediaPoster');
+    var selectSliderPosition = document.getElementById('sliderPosition');
+    var inputSliderPadding = document.getElementById('sliderPadding');
+    var inputScaleMax = document.getElementById('scaleMax');
+    var inputScaleMin = document.getElementById('scaleMin');
+    var inputScaleStart = document.getElementById('scaleStart');
+    var inputPlayButtonText = document.getElementById('playButtonText');
+    var inputPlayButtonColor = document.getElementById('playButtonColor');
+    var inputCountdown = document.getElementById('countdown');
+    var inputTimeCheck = document.getElementById('timeCheck');
+    var inputWarningsAmount = document.getElementById('warningsAmount');
+
+	function setInputValue(settings) {
+        //selectMediaType.value = settings.type;
+        inputMediaWidth.value = settings.width;
+	    inputMediaSrc.value = settings.src;
+        inputMediaPoster.value = settings.poster;
+        selectSliderPosition.value = settings.sliderPosition;
+        inputSliderPadding.value = settings.sliderPadding;
+        inputScaleMax.value = settings.scaleMax;
+        inputScaleMin.value = settings.scaleMin;
+        inputScaleStart.value = settings.scaleStart;
+        inputPlayButtonText.value = settings.playButtonText;
+        inputPlayButtonColor.value = settings.playButtonColor;
+        inputCountdown.value = settings.countdown;
+        inputTimeCheck.value = settings.timecheck;
+        inputWarningsAmount.value = settings.warningsAmount;
+	}	
+
+	function saveChanges() {
+	    let linkArr = inputMediaSrc.value.split('.');
+        let mediaType = "video";
+	    if(linkArr[linkArr.length - 1] === 'mp3') {
+	        mediaType = "audio";
+        }
+		var settings = {
+            type: mediaType,
+            width: inputMediaWidth.value,
+		    src: inputMediaSrc.value,
+            poster: inputMediaPoster.value,
+            sliderPosition: selectSliderPosition.value,
+            sliderPadding: inputSliderPadding.value,
+            scaleMax: inputScaleMax.value,
+            scaleMin: inputScaleMin.value,
+            scaleStart: inputScaleStart.value,
+            playButtonText: inputPlayButtonText.value,
+            playButtonColor: inputPlayButtonColor.value,
+            countdown: inputCountdown.value,
+            timecheck: inputTimeCheck.value,
+            warningsAmount: inputWarningsAmount.value
+        };
+		var hasError = inputMediaSrc.value === '';
+		customQuestion.saveChanges(settings, hasError);
+	}
+
+	customQuestion.onSettingsReceived = setInputValue;
+    document.getElementById("customSettings").addEventListener('change', saveChanges);
+</script>
+</body>
+</html>
