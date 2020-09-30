@@ -17,7 +17,7 @@
             <div class="node-properties__toggle co-flex co-flex--center">
                 <h4 class="co-text-size-normal">Media options</h4>
                 <div class="sd-tooltip-help"
-                     data-tooltip-text="Main options of the question"></div>
+                     data-tooltip-text="The main options for the question."></div>
             </div>
             <div class="co-flex co-flex--center">
                 <button class="collapse-button comd-icon-button comd-panel__toggle--icon-button"></button>
@@ -25,27 +25,20 @@
         </header>
         <div class="comd-panel__collapse-area">
             <div class="node-properties">
-<!--                <div class="node-property-container">-->
-<!--                    <div class="node-property node-property&#45;&#45;mediatype">-->
-<!--                        <label class="node-property__label" for="mediaType">Type</label>-->
-<!--                        <select class="form-input" name="mediaType" id="mediaType"/>-->
-<!--                            <option value="video" selected>video</option>-->
-<!--                            <option value="audio">audio</option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-<!--                </div>-->
                 <div class="node-property-container">
                     <div class="node-property node-property--mediasource">
                         <label class="node-property__label" for="mediaSrc">Source (link)
                             <div class="sd-tooltip-help"
-                                 data-tooltip-text="Required property"></div>
+                                 data-tooltip-text="The path to the media. Required property."></div>
                         </label>
                         <input type="text" id="mediaSrc" class="form-input" required="required"/>
                     </div>
                 </div>
                 <div class="node-property-container">
                     <div class="node-property node-property--mediaposter">
-                        <label class="node-property__label" for="mediaPoster">Poster (link)</label>
+                        <label class="node-property__label" for="mediaPoster">Poster (link)
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="The path to the image which shows before the media starts to play."></div></label>
                         <input type="text" class="form-input" id="mediaPoster"/>
                     </div>
                 </div>
@@ -53,9 +46,9 @@
                     <div class="node-property node-property--mediawidth">
                         <label class="node-property__label" for="mediaWidth">Width (px)
                             <div class="sd-tooltip-help"
-                                 data-tooltip-text="640px by default"></div>
+                                 data-tooltip-text="Width of the media container in pixels. 640px by default. The width of the container can't be less than 300 and more than 900 pixels."></div>
                         </label>
-                        <input type="text" class="form-input form-input--3ch" name="mediaWidth" id="mediaWidth" value=""/>
+                        <input type="text" class="form-input form-input--3ch checkIfNumeric" name="mediaWidth" id="mediaWidth" value=""/>
                     </div>
                 </div>
             </div>
@@ -66,7 +59,7 @@
             <div class="node-properties__toggle co-flex co-flex--center">
                 <h4 class="co-text-size-normal">Slider options</h4>
                 <div class="sd-tooltip-help"
-                     data-tooltip-text="Here you may readjust slider settings on the question."></div>
+                     data-tooltip-text="Slider settings of the question."></div>
             </div>
             <div class="co-flex co-flex--center">
                 <button class="collapse-button comd-icon-button comd-panel__toggle--icon-button"></button>
@@ -76,21 +69,15 @@
             <div class="node-properties">
                 <div class="node-property-container">
                     <div class="node-property node-property--sliderposition">
-                        <label class="node-property__label" for="sliderPosition">Position</label>
-                        <select id="sliderPosition" class="form-input"/>
-                            <option value="bottom">Bottom</option>
-                            <option value="left">Left</option>
-                            <option value="right">Right</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="node-property-container">
-                    <div class="node-property node-property--sliderpadding">
-                        <label class="node-property__label" for="sliderPadding">Indent <!-- from the player -->
+                        <label class="node-property__label" for="sliderPosition">Position
                             <div class="sd-tooltip-help"
-                                 data-tooltip-text="This setting changes indent of a slider form the media container."></div>
+                                 data-tooltip-text="Position of the slider regarding the media container. By default slider positioned at the bottom."></div>
                         </label>
-                        <input type="text" class="form-input form-input--3ch" id="sliderPadding" value=""/>
+                        <select id="sliderPosition" class="form-input"/>
+                        <option value="bottom">Bottom</option>
+                        <option value="left">Left</option>
+                        <option value="right">Right</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -99,27 +86,27 @@
                     <div class="node-property node-property--slidermin">
                         <label class="node-property__label" for="scaleMin">Minimum
                             <div class="sd-tooltip-help"
-                                 data-tooltip-text="-50 by default"></div>
+                                 data-tooltip-text="Set a slider minimum value. -50 by default. Can't be less than -100 and more than 99."></div>
                         </label>
-                        <input type="text" class="form-input form-input--3ch" id="scaleMin" value=""/>
+                        <input type="text" class="form-input form-input--3ch checkIfNumeric" id="scaleMin" value=""/>
                     </div>
                 </div>
                 <div class="node-property-container">
                     <div class="node-property node-property--slidermax">
                         <label class="node-property__label" for="scaleMax">Maximum
                             <div class="sd-tooltip-help"
-                                 data-tooltip-text="50 by default"></div>
+                                 data-tooltip-text="Set a slider maximum value. 50 by default. Can't be less than -99 and more than 100."></div>
                         </label>
-                        <input type="text" class="form-input form-input--3ch" id="scaleMax"/>
+                        <input type="text" class="form-input form-input--3ch checkIfNumeric" id="scaleMax"/>
                     </div>
                 </div>
                 <div class="node-property-container">
                     <div class="node-property node-property--sliderstart">
                         <label class="node-property__label" for="scaleStart">Start point
                             <div class="sd-tooltip-help"
-                                 data-tooltip-text="0 by default"></div>
+                                 data-tooltip-text="Set a slider value at the moment media starts to play. 0 by default."></div>
                         </label>
-                        <input type="text" class="form-input form-input--3ch" id="scaleStart"/>
+                        <input type="text" class="form-input form-input--3ch checkIfNumeric" id="scaleStart"/>
                     </div>
                 </div>
             </div>
@@ -130,7 +117,7 @@
             <div class="node-properties__toggle co-flex co-flex--center">
                 <h4 class="co-text-size-normal">More options</h4>
                 <div class="sd-tooltip-help"
-                     data-tooltip-text="Additional options"></div>
+                     data-tooltip-text="Additional options of the question."></div>
             </div>
             <div class="co-flex co-flex--center">
                 <button class="collapse-button comd-icon-button comd-panel__toggle--icon-button"></button>
@@ -143,7 +130,10 @@
             <div class="node-properties">
                 <div class="node-property-container">
                     <div class="node-property node-property--playbuttoncolor">
-                        <label class="node-property__label" for="playButtonColor">Color</label>
+                        <label class="node-property__label" for="playButtonColor">Color
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="Background color of the play button. Black by default."></div>
+                        </label>
                         <input type="color" class="form-input" id="playButtonColor" value=""/>
                     </div>
                 </div>
@@ -151,7 +141,7 @@
                     <div class="node-property node-property--playbuttontext">
                         <label class="node-property__label" for="playButtonText">Text
                             <div class="sd-tooltip-help"
-                                 data-tooltip-text="'Play' by default"></div>
+                                 data-tooltip-text="Text inside of the play button. 'Play' by default. The text must be 35 characters length maximum."></div>
                         </label>
                         <input type="text" class="form-input" id="playButtonText" value=""/>
                     </div>
@@ -160,9 +150,9 @@
                     <div class="node-property node-property--countdown">
                         <label class="node-property__label" for="countdown">Countdown
                             <div class="sd-tooltip-help"
-                                 data-tooltip-text="3 seconds by default"></div>
+                                 data-tooltip-text="The period of time before the media starts to play. 3 seconds by default. The value must be positive and no more than 15 seconds."></div>
                         </label>
-                        <input type="text" class="form-input form-input--3ch" id="countdown" value=""/>
+                        <input type="text" class="form-input form-input--3ch checkIfNumeric" id="countdown" value=""/>
                         <span>sec</span>
                     </div>
                 </div>
@@ -175,20 +165,22 @@
                     <div class="node-property node-property--warningsamount">
                         <label class="node-property__label" for="warningsAmount">Checks
                             <div class="sd-tooltip-help"
-                                 data-tooltip-text="Once by default"></div>
+                                 data-tooltip-text="Amount of times user would be notified that they did not move the slider after the media starts to play. Once by default. The value must be positive and no more than 10."></div>
                         </label>
-                        <input type="text" class="form-input form-input--3ch" id="warningsAmount"/>
+                        <input type="text" class="form-input form-input--3ch checkIfNumeric" id="warningsAmount"/>
                     </div>
                 </div>
                 <div class="node-property-container">
                     <div class="node-property node-property--timecheck">
                         <label class="node-property__label" for="timeCheck">Time
                             <div class="sd-tooltip-help"
-                            data-tooltip-text="5 seconds by default"></div>
+                                 data-tooltip-text="Time of user being inactive (did not move the slider) after the media starts to play. After which they would be notified that they need to start evaluation. 5 seconds by default. Value must be positive."></div>
                         </label>
-                        <input type="text" class="form-input form-input--3ch" id="timeCheck"/>
+                        <input type="text" class="form-input form-input--3ch checkIfNumeric" id="timeCheck"/>
                         <span>sec</span>
                     </div>
+                    <br />
+                    <br />
                 </div>
             </div>
         </div>
@@ -200,66 +192,256 @@
 </div>
 <script>
     /* settings behaviour */
-    //var selectMediaType = document.getElementById('mediaType');
-    var inputMediaWidth = document.getElementById('mediaWidth');
-    var inputMediaSrc = document.getElementById('mediaSrc');
-    var inputMediaPoster = document.getElementById('mediaPoster');
-    var selectSliderPosition = document.getElementById('sliderPosition');
-    var inputSliderPadding = document.getElementById('sliderPadding');
-    var inputScaleMax = document.getElementById('scaleMax');
-    var inputScaleMin = document.getElementById('scaleMin');
-    var inputScaleStart = document.getElementById('scaleStart');
-    var inputPlayButtonText = document.getElementById('playButtonText');
-    var inputPlayButtonColor = document.getElementById('playButtonColor');
-    var inputCountdown = document.getElementById('countdown');
-    var inputTimeCheck = document.getElementById('timeCheck');
-    var inputWarningsAmount = document.getElementById('warningsAmount');
+    let inputMediaWidth = document.getElementById('mediaWidth');
+    let inputMediaSrc = document.getElementById('mediaSrc');
+    let inputMediaPoster = document.getElementById('mediaPoster');
+    let selectSliderPosition = document.getElementById('sliderPosition');
+    let inputScaleMax = document.getElementById('scaleMax');
+    let inputScaleMin = document.getElementById('scaleMin');
+    let inputScaleStart = document.getElementById('scaleStart');
+    let inputPlayButtonText = document.getElementById('playButtonText');
+    let inputPlayButtonColor = document.getElementById('playButtonColor');
+    let inputCountdown = document.getElementById('countdown');
+    let inputTimeCheck = document.getElementById('timeCheck');
+    let inputWarningsAmount = document.getElementById('warningsAmount');
+    let projectLanguages = [];
+    let currentLanguage = '';
+    let playButtonTextObj = {};
 
-	function setInputValue(settings) {
-        //selectMediaType.value = settings.type;
+    customQuestion.onInit = getInitSettings;
+    
+    function getInitSettings(settings, uiSettings, questionSettings, projectSettings) {
+        console.log('in getInitSettings()');
+        console.log('settings');
+        console.log(settings);
+        console.log('uiSettings');
+        console.log(uiSettings);
+        console.log('questionSettings');
+        console.log(questionSettings);
+        console.log('projectSettings');
+        console.log(projectSettings);
+        projectLanguages = projectSettings;
+    }
+
+	function setInputValue(settings, uiSettings) {
+        console.log('in setInputValue()');
+        console.log('settings');
+        console.log(settings);
+        console.log('uiSettings');
+        console.log(uiSettings);
+        currentLanguage = String(uiSettings.currentLanguage);
+        playButtonTextObj = settings.playButtonText;
         inputMediaWidth.value = settings.width;
 	    inputMediaSrc.value = settings.src;
         inputMediaPoster.value = settings.poster;
         selectSliderPosition.value = settings.sliderPosition;
-        inputSliderPadding.value = settings.sliderPadding;
         inputScaleMax.value = settings.scaleMax;
         inputScaleMin.value = settings.scaleMin;
         inputScaleStart.value = settings.scaleStart;
-        inputPlayButtonText.value = settings.playButtonText;
+        inputPlayButtonText.value = settings.playButtonText[currentLanguage];
         inputPlayButtonColor.value = settings.playButtonColor;
         inputCountdown.value = settings.countdown;
         inputTimeCheck.value = settings.timecheck;
         inputWarningsAmount.value = settings.warningsAmount;
-	}	
-
-	function saveChanges() {
-	    let linkArr = inputMediaSrc.value.split('.');
-        let mediaType = "video";
-	    if(linkArr[linkArr.length - 1] === 'mp3') {
-	        mediaType = "audio";
-        }
-		var settings = {
-            type: mediaType,
-            width: inputMediaWidth.value,
-		    src: inputMediaSrc.value,
-            poster: inputMediaPoster.value,
-            sliderPosition: selectSliderPosition.value,
-            sliderPadding: inputSliderPadding.value,
-            scaleMax: inputScaleMax.value,
-            scaleMin: inputScaleMin.value,
-            scaleStart: inputScaleStart.value,
-            playButtonText: inputPlayButtonText.value,
-            playButtonColor: inputPlayButtonColor.value,
-            countdown: inputCountdown.value,
-            timecheck: inputTimeCheck.value,
-            warningsAmount: inputWarningsAmount.value
-        };
-		var hasError = inputMediaSrc.value === '';
-		customQuestion.saveChanges(settings, hasError);
 	}
 
-	customQuestion.onSettingsReceived = setInputValue;
-    document.getElementById("customSettings").addEventListener('change', saveChanges);
+	function saveNewChanges() {
+	    let errors = checkValues();
+	    removeErrors();
+        if(errors) {
+            showErrors(errors);
+        } else {
+            let linkArr = inputMediaSrc.value.split('.');
+            let mediaType = 'video';
+            if(linkArr[linkArr.length - 1] === 'mp3') {
+                mediaType = 'audio';
+            }
+
+            let settings = {
+                type: mediaType,
+                width: inputMediaWidth.value,
+                src: inputMediaSrc.value,
+                poster: inputMediaPoster.value,
+                sliderPosition: selectSliderPosition.value,
+                scaleMax: inputScaleMax.value,
+                scaleMin: inputScaleMin.value,
+                scaleStart: inputScaleStart.value,
+                playButtonColor: inputPlayButtonColor.value,
+                playButtonText: playButtonTextObj,
+                countdown: inputCountdown.value,
+                timecheck: inputTimeCheck.value,
+                warningsAmount: inputWarningsAmount.value
+            };
+            settings.playButtonText[currentLanguage] = inputPlayButtonText.value;
+            let hasError = inputMediaSrc.value === '';
+            customQuestion.saveChanges(settings, hasError);
+        }
+	}
+
+    function checkValues() {
+        let errorsList = [];
+        // check scale Min setting
+        if(!!inputScaleMin.value) {
+            if(parseInt(inputScaleMin.value) < -100 || parseInt(inputScaleMin.value) > 99) {
+                if(parseInt(inputScaleMin.value) < -100) {
+                    let newItem = {
+                        'element': inputScaleMin,
+                        'errorText': "Can't be less <br/> than -100"
+                    };
+                    errorsList.push(newItem);
+                } else {
+                    let newItem = {
+                        'element': inputScaleMin,
+                        'errorText': "Can't be more than 99"
+                    };
+                    errorsList.push(newItem);
+                }
+            }
+        }
+
+        // check scale Max setting
+        if(!!inputScaleMax.value) {
+            if (parseInt(inputScaleMax.value) < -99 || parseInt(inputScaleMax.value) > 100) {
+                if (parseInt(inputScaleMax.value) < -99) {
+                    let newItem = {
+                        'element': inputScaleMax,
+                        'errorText': "Can't be less than -99"
+                    };
+                    errorsList.push(newItem);
+                } else {
+                    let newItem = {
+                        'element': inputScaleMax,
+                        'errorText': "Can't be more than 100"
+                    };
+                    errorsList.push(newItem);
+                }
+            }
+        }
+
+        // compare Min and Max values
+        if(!!inputScaleMax.value && !!inputScaleMin.value) {
+            if(parseInt(inputScaleMax.value) <= parseInt(inputScaleMin.value)) {
+                let newItem = {
+                    'element': inputScaleMax,
+                    'errorText': "Can't be less or equal than scale's Minimum"
+                };
+                errorsList.push(newItem);
+            }
+        }
+
+        // check media width setting
+        if(!!inputMediaWidth.value) {
+            if(parseInt(inputMediaWidth.value) < 300 || parseInt(inputMediaWidth.value) > 900) {
+                if(parseInt(inputMediaWidth.value) < 300) {
+                    let newItem = {
+                        'element': inputMediaWidth,
+                        'errorText': "Can't be less than 300px"
+                    };
+                    errorsList.push(newItem);
+                } else {
+                    let newItem = {
+                        'element': inputMediaWidth,
+                        'errorText': "Can't be more than 900px"
+                    };
+                    errorsList.push(newItem);
+                }
+            }
+        }
+
+        // check if the start point is inside of the Min and Max range
+        if(!!inputScaleStart.value) {
+            let rangeStart = -50;
+            let rangeEnd = 50;
+            if(!!inputScaleMin.value) {
+                rangeStart = inputScaleMin.value;
+            }
+            if(!!inputScaleMax.value) {
+                rangeEnd = inputScaleMax.value;
+            }
+            if(parseInt(inputScaleStart.value) < parseInt(rangeStart) || parseInt(inputScaleStart.value) > parseInt(rangeEnd)) {
+                let newItem = {
+                    'element': inputScaleStart,
+                    'errorText': "Must be in the range between " + parseInt(rangeStart) + " and " + parseInt(rangeEnd)
+                };
+                errorsList.push(newItem);
+            }
+        }
+
+        // check the length of a Play button text
+        if(!!inputPlayButtonText.value) {
+            if(String(inputPlayButtonText.value).length > 35) {
+                let newItem = {
+                    'element': inputPlayButtonText,
+                    'errorText': "Your text is too long"
+                };
+                errorsList.push(newItem);
+            }
+        }
+
+        // check the Countdown value
+        if(!!inputCountdown.value) {
+            if(inputCountdown.value < 0 || inputCountdown.value > 15) {
+                let newItem = {
+                    'element': inputCountdown,
+                    'errorText': "Value must be positive and no more than 15"
+                };
+                errorsList.push(newItem);
+            }
+        }
+
+        // check the Checks value
+        if(!!inputWarningsAmount.value) {
+            if(inputWarningsAmount.value < 0 || inputWarningsAmount.value > 10) {
+                let newItem = {
+                    'element': inputWarningsAmount,
+                    'errorText': "Value must be<br />positive and<br />no more than 10"
+                };
+                errorsList.push(newItem);
+            }
+        }
+
+        // check the Time value
+        if(!!inputTimeCheck.value) {
+            if(inputTimeCheck.value < 0) {
+                let newItem = {
+                    'element': inputTimeCheck,
+                    'errorText': "Value must be positive"
+                };
+                errorsList.push(newItem);
+            }
+        }
+
+        if(errorsList.length > 0) {
+            return errorsList;
+        } else {
+            return false;
+        }
+    }
+
+    function showErrors(errors) {
+	    for(let i = 0; i < errors.length; i++) {
+            errorTooltipShow(errors[i].element, errors[i].errorText);
+            errors[i].element.classList.add("form-input--error");
+        }
+    }
+
+    function removeErrors() {
+	    let elementsWithErrors = document.querySelectorAll('.form-input--error');
+	    if(elementsWithErrors.length > 0) {
+            for(let i = 0; i < elementsWithErrors.length; i++) {
+                let elementID = elementsWithErrors[i].id;
+                if(document.querySelectorAll("#error--" + elementID).length > 0) {
+                    elementsWithErrors[i].classList.remove("form-input--error");
+                    document.getElementById("error--" + elementID).outerHTML = "";
+                }
+            }
+        }
+    }
+
+    customQuestion.onSettingsReceived = setInputValue;
+    document.getElementById('customSettings').addEventListener('input', function () {
+        saveNewChanges();
+    });
 </script>
 </body>
 </html>

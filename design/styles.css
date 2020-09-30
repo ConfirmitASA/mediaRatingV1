@@ -438,6 +438,21 @@ input[type="color"] {
     border-radius: 0.286rem;
     overflow-wrap: break-word;
 }
+.comd-tooltip.comd-tooltip--bottom {
+    padding-top: 5px;
+}
+.comd-tooltip--bottom .comd-tooltip__arrow {
+    top: 0;
+    border-width: 0 5px 5px;
+    border-bottom-color: #31363e;
+}
+
+.comd-tooltip--error .comd-tooltip--bottom, .comd-tooltip--error .comd-tooltip__arrow {
+    border-bottom-color: #eb0052;
+}
+.comd-tooltip--error .comd-tooltip__inner {
+    background-color: #eb0052;
+}
 /* tooltip end */
 
 /* collapse */
@@ -484,6 +499,7 @@ input[type="color"] {
     width:100%;
     font-weight:400;
     font-size:1rem;
+    margin-bottom: 10px;
 }
 .comd-alert::before {
     content: ' ';
@@ -826,3 +842,18 @@ input[type="color"] {
     height:38px;
 }
 /* inputlist end */
+
+/* property errors */
+.form-input--error {
+    border-color: #eb0052 !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ff6c9f !important;
+}
+input[type=radio].form-input--error + label .icon-radio::before {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0px 0px 8px #ff6c9f !important;
+    background-color: rgb(235 0 82) !important;
+    border-radius: 8px;
+}
+input[type=checkbox].form-input--error + label .icon-checkbox::before {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ff6c9f !important;
+    background-color: rgb(235 0 82 / 30%) !important;
+}

@@ -260,7 +260,7 @@ div#custom-handle {
     padding-top: 4px;
     border-radius: 50%;
     text-align: center;
-    /*background: #00B5E2;*/
+    font-size: 13px;
     color: #ffffff;
 }
 .slider-left div#custom-handle, .slider-right div#custom-handle {

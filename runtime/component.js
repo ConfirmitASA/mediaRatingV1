@@ -8,6 +8,7 @@ class MediaRatingQuestion {
         //this.screenOrientation = this.getOrientation();
         this.primaryBackground = $(".cf-navigation-next").css("background-color");
         this.videoDuration = 0;
+        this.currentLanguage = String(Confirmit.page.surveyInfo.language);
         this.devErrors = [];
         this.init();
     }
@@ -16,7 +17,6 @@ class MediaRatingQuestion {
         this.devErrors = this.checkRequiredOptions();
         if (this.devErrors.length > 0) {
             document.getElementById(this.question.id).innerHTML = '<div style="color: red;">' + this.devErrors.join('<br />') + '</div>';
-            //$('#' + currentQuestion.id).html('<div style="color: red;">' + errorsForDeveloper.join('<br />') + '</div>');
         } else {
             document.getElementById(this.question.id).querySelectorAll('.cf-open-answer')[0].style.display = 'none';
             this.setDefaultOptions();
@@ -29,13 +29,10 @@ class MediaRatingQuestion {
         if (!this.options.hasOwnProperty("src") || (this.options.hasOwnProperty("src") && this.options.src == "")) {
             this.devErrors.push("Option \"src\" is required");
         }
-
         return this.devErrors;
     }
 
     setDefaultOptions() {
-        // console.log("this.options");
-        // console.log(this.options);
         if (!this.options.hasOwnProperty("type") || (this.options.hasOwnProperty("type") && this.options.type == "")) {
             this.options.type = "video";
         }
@@ -48,9 +45,6 @@ class MediaRatingQuestion {
         if (!this.options.hasOwnProperty("sliderPosition") || (this.options.hasOwnProperty("sliderPosition") && this.options.sliderPosition == "")) {
             this.options.sliderPosition = "bottom";
         }
-        if (!this.options.hasOwnProperty("sliderPadding") || (this.options.hasOwnProperty("sliderPadding") && this.options.sliderPadding == "")) {
-           this.options.sliderPadding = 30;
-        }
         if (!this.options.hasOwnProperty("scaleMin") || (this.options.hasOwnProperty("scaleMin") && this.options.scaleMin == "")) {
             this.options.scaleMin = -50;
         }
@@ -60,11 +54,10 @@ class MediaRatingQuestion {
         if (!this.options.hasOwnProperty("scaleStart") || (this.options.hasOwnProperty("scaleStart") && this.options.scaleStart == "")) {
             this.options.scaleStart = 0;
         }
-        if (!this.options.hasOwnProperty("playButtonText") || (this.options.hasOwnProperty("playButtonText") && this.options.playButtonText == "")) {
-            this.options.playButtonText = "Play";
+        if (!this.options.playButtonText.hasOwnProperty(this.currentLanguage) || (this.options.playButtonText.hasOwnProperty(this.currentLanguage) && this.options.playButtonText[this.currentLanguage] == "")) {
+            this.options.playButtonText[this.currentLanguage] = "Play";
         }
         if (!this.options.hasOwnProperty("playButtonColor") || (this.options.hasOwnProperty("playButtonColor") && this.options.playButtonColor == "")) {
-            //var selectedForeground = $(".cf-navigation-next").css("color");
             this.options.playButtonColor = this.primaryBackground;
         }
         if (!this.options.hasOwnProperty("countdown") || (this.options.hasOwnProperty("countdown") && this.options.countdown == "")) {
@@ -76,9 +69,6 @@ class MediaRatingQuestion {
         if (!this.options.hasOwnProperty("warningsAmount") || (this.options.hasOwnProperty("warningsAmount") && this.options.warningsAmount == "")) {
             this.options.warningsAmount = 1;
         }
-        // if (!this.options.hasOwnProperty("showSparklie") || (this.options.hasOwnProperty("type") && this.options.type == "")) {
-        //     this.options.showSparklie = true;
-        // }
     }
 
     renderVideoRatingQuestion() {
@@ -90,13 +80,14 @@ class MediaRatingQuestion {
         }
         var notificationIos = '';
         if (iOS) {
-            notificationIos = '<div id="apple-warning"><span style="text-transform:capitalize;">' + this.options.mediaType + '</span> is loading and will start shortly.</div>';
+            //<span style="text-transform:capitalize;">' + this.options.mediaType + '</span>
+            notificationIos = '<div id="apple-warning">Media is loading and will start shortly.</div>';
         }
 
         $('#' + this.question.id + ' .cf-question__content').prepend('' +
             notificationIos +
             '<div class="video-slider-container"><div class="video-container" style="width: ' + this.options.width + 'px; max-width: 82%;">' +
-            '<div class="button-container"><button style="background: ' + this.options.playButtonColor + ';" type="button" id="startVideo">' + this.options.playButtonText + '</buttonsty></div>' +
+            '<div class="button-container"><button style="background: ' + this.options.playButtonColor + ';" type="button" id="startVideo">' + this.options.playButtonText[this.currentLanguage] + '</buttonsty></div>' +
             '<div id="counter"></div>' +
             '</div>' +
             '<div class="slider-container">' +
@@ -107,15 +98,6 @@ class MediaRatingQuestion {
         //hide countdown
         $('#counter').hide();
 
-        // var selectedLight = selectedBackground;
-        // if (selectedLight.indexOf("#") > -1) {
-        //     selectedLight = this.adjustHexOpacity(selectedLight , 0.5);
-        // } else {
-        //     selectedLight = selectedLight.replace('rgb','rgba').replace(')',',0.5)')
-        // }
-        //
-        // $("head").append('<style>.uiColorScheme{ background-color: ' + selectedBackground + '!important; color: ' + selectedForeground + '!important; } .uiColorSchemeFaded{ background-color: ' + selectedLight + ';} </style>');
-
         //add video
         var video = document.createElement('video');
         video.setAttribute('id', this.question.id + '-rate-video');
@@ -123,15 +105,12 @@ class MediaRatingQuestion {
         video.innerHTML = '<source src="' + this.options.src + '" type = "video/mp4" /><p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that<a href = "https://videojs.com/html5-video-support/" target = "_blank"> supports HTML5 video </a></p>';
         document.getElementById(this.question.id).querySelectorAll('.video-container')[0].appendChild(video);
 
-        // var videoHTML = '<video id="' + this.question.id + '-rate-video" class="video-frame" style="width: 100%; height:auto;"><source src="' + this.options.src + '" type = "video/mp4" /><p class="vjs-no-js">To play this ' + this.options.mediaType + ' please enable JavaScript, and consider upgrading to a web browser that<a href="https://videojs.com/html5-video-support/" target = "_blank"> supports HTML5 video </a></p></video>';
-        // $(".video-container").append(videoHTML);
-
         //video settings
         var controlsVal = false;
         if (iOS) {
             controlsVal = false;
         }
-        //console.log(this.question.id);
+
         var myPlayer = videojs(this.question.id + '-rate-video', {
             controls: controlsVal,
             autoplay: false,
@@ -146,7 +125,6 @@ class MediaRatingQuestion {
 
         //Changing duration to use a Math.round function
         function changeCounterDisplay(obj) {
-            //$('.video-container').append('<div class="videoTiming"><p class="videoTimingTitle">Video length (remain): <span id="videoLength">' + (Math.floor(myPlayer.duration()) + 1) + ' sec.</span> (<span id="timeRemain">' + (Math.floor(myPlayer.duration()) + 1) + '</span>  sec.)</p></div>');
             var counterMinutes = obj.setCounterMinutesDisplay(Math.floor(myPlayer.duration()));
             $('.video-container').append('<div class="videoTiming clearfix" style="background: ' + obj.primaryBackground + ';"><span class="videoTimingTitle"><span id="timeRemain">00:00</span>&nbsp;/&nbsp;<span id="videoLength">' + counterMinutes + ' </span></span></div>');
             obj.videoDuration = Math.floor(myPlayer.duration());
@@ -171,7 +149,6 @@ class MediaRatingQuestion {
             max: parseInt(this.options.scaleMax),
             value: parseInt(this.options.scaleStart),
             orientation: orientation,
-            //disabled: true,
             create: function () {
                 handle.text($(this).slider('value'));
             },
@@ -182,7 +159,7 @@ class MediaRatingQuestion {
         });
 
         var nextBtn = $('.cf-navigation-next');
-        nextBtn.attr('disabled', true);
+        nextBtn.attr('disabled', this.question.required);
 
         //countdown
         $(document).on('click', '#startVideo', function () { startVideo(object); });
@@ -234,11 +211,11 @@ class MediaRatingQuestion {
 
     playerCycle(player, sliderObj) {
         var object = this;
-        var timeleft = object.options.countdown;
+        var timeleft = parseInt(object.options.countdown);
         var startTimer = setInterval(function () {
             if (timeleft <= 0) {
                 clearInterval(startTimer);
-                $('#startVideo').text("Play");
+                $('#startVideo').text(object.options.playButtonText[object.currentLanguage]);
                 sliderObj.slider({ disabled: false });
                 player.play();
                 var videoLength = Math.round(player.duration());
@@ -247,7 +224,11 @@ class MediaRatingQuestion {
                     object.checkActivity(player, sliderObj);
                 }
             }
-            $('#startVideo').text(timeleft);
+            if (timeleft === 0) {
+                $('#startVideo').text(object.options.playButtonText[object.currentLanguage]);
+            } else {
+                $('#startVideo').text(timeleft);
+            }
             timeleft -= 1;
         }, 1000);
     }
@@ -267,10 +248,10 @@ class MediaRatingQuestion {
                     //restart video
                     player.pause();
                     sliderObj.slider({ disabled: true });
-                    $('#startVideo').text(object.options.playButtonText);
+                    $('#startVideo').text(object.options.playButtonText[object.currentLanguage]);
                     // $('#counter').html('');
                     $('#popup-content').html('' +
-                        '<p>You don\'t seem to have moved your slider. Please click ‘OK’ to restart this task again.</p>' +
+                        '<p>You don\'t seem to have moved your slider. Please click ‘Reset’ to restart this task again.</p>' +
                         '<button type="button" id="restartVideo" style="background: ' + object.options.playButtonColor + ';">Reset</button>');
                     $('#popup').removeClass('hide');
                     $('body').css('overflow', 'hidden');
@@ -283,7 +264,7 @@ class MediaRatingQuestion {
 
         $('body').on('click', '#restartVideo', function () {
             object.closePopup();
-            $('#startVideo').text("Play");
+            $('#startVideo').text(object.options.playButtonText[object.currentLanguage]);
             object.generateSparklines(object.videoDuration);
             object.restartVideo(player, sliderObj);
         });
@@ -300,14 +281,12 @@ class MediaRatingQuestion {
         this.playerCycle(player, sliderObj)
     }
 
-    //setInterval(function, milliseconds, param1, param2, ...)
-    //var startDataTimer;
+    //get evaluation values every second of the media
     collectData(player, videoLength, sliderObj) {
         var videoAsnwers = [];
         var object = this;
         player.on('timeupdate', function () {
             var second = Math.floor(player.currentTime());
-            //console.log(second + " == " + sliderObj.slider('value'));
             if (second >= 1) {
                 videoAsnwers[second - 1] = sliderObj.slider('value');
                 var val = sliderObj.slider('value');
@@ -326,7 +305,6 @@ class MediaRatingQuestion {
                         "background-color": "red"
                     });
                 } else {
-
                     $("#spark-" + (second - 1)).css({
                         "height": "2px",
                         "margin-bottom": "9px",
@@ -342,12 +320,11 @@ class MediaRatingQuestion {
         player.on('ended', function () {
             $('.cf-navigation-next').attr('disabled', false);
             var data = object.checks + "|" + videoAsnwers;
-            console.log("data");
-            console.log(data);
             object.setQuestionValue(data, object);
         })
     }
 
+    //screen orientation
     getOrientation() {
         var orientation = window.innerWidth > window.innerHeight ? "landscape" : "portrait";
         return orientation;
@@ -366,7 +343,5 @@ class MediaRatingQuestion {
 
 /* global register */
 register(function (question, customQuestionSettings, questionViewSettings) {
-    // console.log("customQuestionSettings");
-    // console.log(customQuestionSettings);
     new MediaRatingQuestion(question, customQuestionSettings);
 });
