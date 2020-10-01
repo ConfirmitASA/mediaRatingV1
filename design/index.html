@@ -179,6 +179,40 @@
                         <input type="text" class="form-input form-input--3ch checkIfNumeric" id="timeCheck"/>
                         <span>sec</span>
                     </div>
+                </div>
+                <div class="node-property-container">
+                    <div class="node-property node-property--resetbtntext">
+                        <label class="node-property__label" for="resetBtnText">Reset button text
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="Text on the reset button. 'Reset' by default."></div>
+                        </label>
+                        <input type="text" class="form-input form-input--10ch" id="resetBtnText"/>
+                    </div>
+                </div>
+            </div>
+            <div class="node-properties">
+                <div class="node-property-container node-property-container--full-width">
+                    <div class="node-property node-property--warningreset">
+                        <label class="node-property__label" for="warningReset">Warning text
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="Default text: You don't seem to have moved your slider. Please click &lsquo;Reset&lsquo; to restart this task again."></div>
+                        </label>
+                        <input type="text" class="form-input form-input--full-width" id="warningReset"/>
+                    </div>
+                </div>
+            </div>
+            <div class="node-properties">
+                <h3>Other warnings</h3>
+            </div>
+            <div class="node-properties">
+                <div class="node-property-container node-property-container--full-width">
+                    <div class="node-property node-property--warningios">
+                        <label class="node-property__label" for="warningIOS">Notification for iOS devices
+                            <div class="sd-tooltip-help"
+                                 data-tooltip-text="Default text: Media is loading and will start shortly."></div>
+                        </label>
+                        <input type="text" class="form-input form-input--full-width" id="warningIOS"/>
+                    </div>
                     <br />
                     <br />
                 </div>
@@ -204,45 +238,64 @@
     let inputCountdown = document.getElementById('countdown');
     let inputTimeCheck = document.getElementById('timeCheck');
     let inputWarningsAmount = document.getElementById('warningsAmount');
+    let inputResetBtnText = document.getElementById('resetBtnText');
+    let inputWarningReset = document.getElementById('warningReset');
+    let inputWarningIOS = document.getElementById('warningIOS');
     let projectLanguages = [];
     let currentLanguage = '';
     let playButtonTextObj = {};
+    let resetBtnTextObj = {};
+    let warningResetObj = {};
+    let warningIOSObj = {};
 
     customQuestion.onInit = getInitSettings;
     
     function getInitSettings(settings, uiSettings, questionSettings, projectSettings) {
-        console.log('in getInitSettings()');
-        console.log('settings');
-        console.log(settings);
-        console.log('uiSettings');
-        console.log(uiSettings);
-        console.log('questionSettings');
-        console.log(questionSettings);
-        console.log('projectSettings');
-        console.log(projectSettings);
+        console.log("onInit");
         projectLanguages = projectSettings;
     }
 
 	function setInputValue(settings, uiSettings) {
-        console.log('in setInputValue()');
-        console.log('settings');
-        console.log(settings);
-        console.log('uiSettings');
-        console.log(uiSettings);
+        console.log("onSettingsReceived");
         currentLanguage = String(uiSettings.currentLanguage);
-        playButtonTextObj = settings.playButtonText;
-        inputMediaWidth.value = settings.width;
-	    inputMediaSrc.value = settings.src;
-        inputMediaPoster.value = settings.poster;
-        selectSliderPosition.value = settings.sliderPosition;
-        inputScaleMax.value = settings.scaleMax;
-        inputScaleMin.value = settings.scaleMin;
-        inputScaleStart.value = settings.scaleStart;
-        inputPlayButtonText.value = settings.playButtonText[currentLanguage];
-        inputPlayButtonColor.value = settings.playButtonColor;
-        inputCountdown.value = settings.countdown;
-        inputTimeCheck.value = settings.timecheck;
-        inputWarningsAmount.value = settings.warningsAmount;
+        if(settings !== null) {
+            playButtonTextObj = settings.playButtonText;
+            resetBtnTextObj = settings.resetBtnText
+            warningResetObj = settings.warningReset;
+            warningIOSObj = settings.warningIOS;
+
+            inputMediaWidth.value = settings.width;
+            inputMediaSrc.value = settings.src;
+            inputMediaPoster.value = settings.poster;
+            selectSliderPosition.value = settings.sliderPosition;
+            inputScaleMax.value = settings.scaleMax;
+            inputScaleMin.value = settings.scaleMin;
+            inputScaleStart.value = settings.scaleStart;
+            if(settings.hasOwnProperty('playButtonText') && settings.playButtonText[currentLanguage] !== undefined) {
+                inputPlayButtonText.value = settings.playButtonText[currentLanguage];
+            } else {
+                inputPlayButtonText.value = '';
+            }
+            inputPlayButtonColor.value = settings.playButtonColor;
+            inputCountdown.value = settings.countdown;
+            inputTimeCheck.value = settings.timecheck;
+            inputWarningsAmount.value = settings.warningsAmount;
+            if(settings.hasOwnProperty('resetBtnText') && settings.resetBtnText[currentLanguage] !== undefined) {
+                inputResetBtnText.value = settings.resetBtnText[currentLanguage];
+            } else {
+                inputResetBtnText.value = '';
+            }
+            if(settings.hasOwnProperty('warningReset') && settings.warningReset[currentLanguage] !== undefined) {
+                inputWarningReset.value = settings.warningReset[currentLanguage];
+            } else {
+                inputWarningReset.value = '';
+            }
+            if(settings.hasOwnProperty('warningIOS') && settings.warningIOS[currentLanguage] !== undefined) {
+                inputWarningIOS.value = settings.warningIOS[currentLanguage];
+            } else {
+                inputWarningIOS.value = '';
+            }
+        }
 	}
 
 	function saveNewChanges() {
@@ -270,9 +323,15 @@
                 playButtonText: playButtonTextObj,
                 countdown: inputCountdown.value,
                 timecheck: inputTimeCheck.value,
-                warningsAmount: inputWarningsAmount.value
+                warningsAmount: inputWarningsAmount.value,
+                resetBtnText: resetBtnTextObj,
+                warningReset: warningResetObj,
+                warningIOS: warningIOSObj
             };
             settings.playButtonText[currentLanguage] = inputPlayButtonText.value;
+            settings.resetBtnText[currentLanguage] = inputResetBtnText.value;
+            settings.warningReset[currentLanguage] = inputWarningReset.value;
+            settings.warningIOS[currentLanguage] = inputWarningIOS.value;
             let hasError = inputMediaSrc.value === '';
             customQuestion.saveChanges(settings, hasError);
         }

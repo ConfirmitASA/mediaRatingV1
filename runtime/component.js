@@ -18,7 +18,7 @@ class MediaRatingQuestion {
         if (this.devErrors.length > 0) {
             document.getElementById(this.question.id).innerHTML = '<div style="color: red;">' + this.devErrors.join('<br />') + '</div>';
         } else {
-            document.getElementById(this.question.id).querySelectorAll('.cf-open-answer')[0].style.display = 'none';
+            //document.getElementById(this.question.id).querySelectorAll('.cf-open-answer')[0].style.display = 'none';
             this.setDefaultOptions();
             $('body').prepend('<div id="popup" class="hide"><div id="popup-content"></div></div>');
             this.renderVideoRatingQuestion();
@@ -69,11 +69,26 @@ class MediaRatingQuestion {
         if (!this.options.hasOwnProperty("warningsAmount") || (this.options.hasOwnProperty("warningsAmount") && this.options.warningsAmount == "")) {
             this.options.warningsAmount = 1;
         }
+        if (!this.options.resetBtnText.hasOwnProperty(this.currentLanguage) || (this.options.resetBtnText.hasOwnProperty(this.currentLanguage) && this.options.resetBtnText[this.currentLanguage] == "")) {
+            this.options.resetBtnText[this.currentLanguage] = "Reset";
+        }
+        if (!this.options.warningReset.hasOwnProperty(this.currentLanguage) || (this.options.warningReset.hasOwnProperty(this.currentLanguage) && this.options.warningReset[this.currentLanguage] == "")) {
+            this.options.warningReset[this.currentLanguage] = "You don't seem to have moved your slider. Please click ‘Reset’ to restart this task again.";
+        }
+        if (!this.options.warningIOS.hasOwnProperty(this.currentLanguage) || (this.options.warningIOS.hasOwnProperty(this.currentLanguage) && this.options.warningIOS[this.currentLanguage] == "")) {
+            this.options.warningIOS[this.currentLanguage] = "Media is loading and will start shortly.";
+        }
     }
 
     renderVideoRatingQuestion() {
         var object = this;
-        // add markup
+        // add standard question markup
+        document.getElementById(this.question.id).innerHTML = '<div class="cf-question__text" id="' + this.question.id + '_text">' + this.question.text + '</div>' +
+            '<div class="cf-question__instruction" id="' + this.question.id + '_instruction">' + this.question.instruction + '</div>' +
+            '<div class="cf-question__error cf-error-block cf-error-block--bottom cf-error-block--hidden" id="' + this.question.id + '_error" role="alert" aria-labelledby="' + this.question.id + '_error_list">' +
+            '<ul class="cf-error-list" id="' + this.question.id + '_error_list"></ul></div>' +
+            '<div class="cf-question__content cf-question__content--no-padding"><div class="video-slider-container"></div></div>';
+        // add specific question markup
         var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         if (this.options.sliderPosition == 'left' || this.options.sliderPosition == 'right') {
             $('#' + this.question.id + ' .cf-question__content').addClass('slider-' + this.options.sliderPosition);
@@ -81,7 +96,7 @@ class MediaRatingQuestion {
         var notificationIos = '';
         if (iOS) {
             //<span style="text-transform:capitalize;">' + this.options.mediaType + '</span>
-            notificationIos = '<div id="apple-warning">Media is loading and will start shortly.</div>';
+            notificationIos = '<div id="apple-warning">' + this.options.warningIOS[this.currentLanguage] + '</div>';
         }
 
         $('#' + this.question.id + ' .cf-question__content').prepend('' +
@@ -251,8 +266,8 @@ class MediaRatingQuestion {
                     $('#startVideo').text(object.options.playButtonText[object.currentLanguage]);
                     // $('#counter').html('');
                     $('#popup-content').html('' +
-                        '<p>You don\'t seem to have moved your slider. Please click ‘Reset’ to restart this task again.</p>' +
-                        '<button type="button" id="restartVideo" style="background: ' + object.options.playButtonColor + ';">Reset</button>');
+                        '<p>' + object.options.warningReset[object.currentLanguage] + '</p>' +
+                        '<button type="button" id="restartVideo" style="background: ' + object.options.playButtonColor + ';">' + object.options.resetBtnText[object.currentLanguage] + '</button>');
                     $('#popup').removeClass('hide');
                     $('body').css('overflow', 'hidden');
                 }

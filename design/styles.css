@@ -73,6 +73,9 @@ input[type=radio]:checked + label .icon-radio::before {
     display: flex;
     font-size: 13px;
 }
+.node-property-container.node-property-container--full-width {
+    width: 100%;
+}
 .node-properties__header {
     background: #f5f7fa;
     padding: 4px 10px;
