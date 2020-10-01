@@ -3,7 +3,7 @@
   "name": "Media rating (DEVELOPMENT)",
   "description": "Custom question which allows respondents to evaluate media (video or audio) while it broadcasted. Developed by Confirmit.",
   "baseQuestionType": "OpenForm",
-  "disableDefaultRendering": false,
+  "disableDefaultRendering": true,
   "iconUrl": "design/icon.svg",
   "designEntryPoint": "design/index.html",
   "runtimeEntryPoint": {

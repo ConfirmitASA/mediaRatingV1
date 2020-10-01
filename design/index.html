@@ -259,10 +259,18 @@
         console.log("onSettingsReceived");
         currentLanguage = String(uiSettings.currentLanguage);
         if(settings !== null) {
-            playButtonTextObj = settings.playButtonText;
-            resetBtnTextObj = settings.resetBtnText
-            warningResetObj = settings.warningReset;
-            warningIOSObj = settings.warningIOS;
+            if(settings.hasOwnProperty('playButtonText')) {
+                playButtonTextObj = settings.playButtonText;
+            }
+            if(settings.hasOwnProperty('resetBtnText')) {
+                resetBtnTextObj = settings.resetBtnText;
+            }
+            if(settings.hasOwnProperty('warningReset')) {
+                warningResetObj = settings.warningReset;
+            }
+            if(settings.hasOwnProperty('warningIOS')) {
+                warningIOSObj = settings.warningIOS;
+            }
 
             inputMediaWidth.value = settings.width;
             inputMediaSrc.value = settings.src;
@@ -300,8 +308,9 @@
 
 	function saveNewChanges() {
 	    let errors = checkValues();
+        let elementsWithErrors = document.querySelectorAll('.form-input--error');
 	    removeErrors();
-        if(errors) {
+        if(elementsWithErrors.length > 0 || errors) {
             showErrors(errors);
         } else {
             let linkArr = inputMediaSrc.value.split('.');
@@ -328,6 +337,8 @@
                 warningReset: warningResetObj,
                 warningIOS: warningIOSObj
             };
+            console.log('settings');
+            console.log(settings);
             settings.playButtonText[currentLanguage] = inputPlayButtonText.value;
             settings.resetBtnText[currentLanguage] = inputResetBtnText.value;
             settings.warningReset[currentLanguage] = inputWarningReset.value;
